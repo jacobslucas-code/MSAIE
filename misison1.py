@@ -11,12 +11,15 @@ def manifest_dictionary(file):
                 crates.append((type,weight))
     return crates
 
-def totals(crates,limit):
+def totals(file,limit):
+    crates=manifest_dictionary(file)
     total={}
     totalweight=0
     for type,weight in crates:
         total[type]=total.get(type,0)+weight
         totalweight+=weight
+    if totalweight>limit:
+        print('Limit exceeded')
     return total
 
 print(manifest_dictionary(file))
